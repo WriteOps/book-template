@@ -1,0 +1,17 @@
+{
+    "name": "From Tutorial Hell to Real Projects",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": ".."
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "yzhang.markdown-all-in-one",
+                "shane.pandoc",
+                "james-yu.latex-workshop"
+            ]
+        }
+    },
+    "remoteUser": "root"
+}

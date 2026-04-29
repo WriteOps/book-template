@@ -1,0 +1,41 @@
+# Eisvogel specific properties
+book: true
+classoption:
+  - oneside
+  - open=any
+# Cover Page Settings
+titlepage: true
+titlepage-color: "0A192F" # Hex color (WITHOUT #)
+titlepage-text-color: "FFFFFF" # Hex color (WITHOUT #)
+titlepage-rule-color: "FFD700" # Hex color (WITHOUT #)
+titlepage-rule-height: 0 # Set to 0 to hide the yellow line
+titlepage-background: "https://raw.githubusercontent.com/WriteOps/.github/refs/heads/main/cover.png" # Path to full-page cover image
+
+# Page Background (Optional)
+# page-background: "assets/images/background.png"
+# page-background-opacity: 0.2
+
+# Headers & Footers
+header-left: "Book Title"
+# header-center: ""
+# header-right: ""
+footer-left: "Author Name"
+# footer-center: ""
+# footer-right: "" # Defaults to page number if left commented out
+
+# Table of Contents
+toc-own-page: true
+toc: true
+
+# Styling
+colorlinks: true
+linkcolor: "blue"
+geometry:
+  - top=30mm
+  - left=20mm
+  - right=20mm
+  - bottom=30mm
+
+header-includes:
+  - \usepackage{float}
+  - \floatplacement{figure}{H}

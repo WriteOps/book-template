@@ -1,0 +1,8 @@
+node_modules
+output
+.git
+.devcontainer
+Dockerfile
+.dockerignore
+*.pdf
+mermaid-filter.err

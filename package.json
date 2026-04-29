@@ -1,0 +1,33 @@
+{
+  "name": "@writeops/book-template",
+  "version": "1.0.0",
+  "description": "A professional book-as-code starter kit using Markdown, Pandoc, and Eisvogel LaTeX.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WriteOps/book-template.git"
+  },
+  "keywords": [
+    "writeops",
+    "book",
+    "markdown",
+    "pandoc",
+    "latex",
+    "eisvogel",
+    "pdf",
+    "automation",
+    "publishing"
+  ],
+  "author": "WriteOps",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WriteOps/book-template/issues"
+  },
+  "homepage": "https://github.com/WriteOps/book-template#readme",
+  "scripts": {
+    "build": "./build.sh"
+  },
+  "dependencies": {
+    "mermaid-filter": "^1.4.7"
+  }
+}
