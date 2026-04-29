@@ -41,6 +41,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Cache Remote Assets
+        uses: actions/cache@v4
+        with:
+          path: .cache/images
+          key: ${{ runner.os }}-assets-${{ hashFiles('metadata.yml', 'chapters/**/*.md') }}
+          restore-keys: |
+            ${{ runner.os }}-assets-
+
       - name: Install Chromium for Mermaid
         run: sudo apt-get install -y chromium-browser
 
