@@ -7,10 +7,13 @@ book: true
 classoption:
   - oneside
   - open=any
+
 # Cover Page Settings
 titlepage: false
-# The cover is now handled manually by meta/cover.md
-titlepage-background: "https://raw.githubusercontent.com/WriteOps/.github/refs/heads/main/cover.png"
+
+# Page Background (Optional)
+# page-background: "assets/images/background.png"
+# page-background-opacity: 0.2
 
 # Headers & Footers
 header-left: "Book Title"
