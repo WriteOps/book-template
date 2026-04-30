@@ -4,6 +4,7 @@ date: "2024"
 
 # Eisvogel specific properties
 book: true
+graphics: true
 classoption:
   - oneside
   - open=any
