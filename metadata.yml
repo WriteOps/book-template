@@ -1,19 +1,16 @@
+title: "My Awesome Book"
+author: "Author Name"
+date: "2024"
+
 # Eisvogel specific properties
 book: true
 classoption:
   - oneside
   - open=any
 # Cover Page Settings
-titlepage: true
-titlepage-color: "0A192F" # Hex color (WITHOUT #)
-titlepage-text-color: "FFFFFF" # Hex color (WITHOUT #)
-titlepage-rule-color: "FFD700" # Hex color (WITHOUT #)
-titlepage-rule-height: 0 # Set to 0 to hide the yellow line
-titlepage-background: "https://raw.githubusercontent.com/WriteOps/.github/refs/heads/main/cover.png" # Path to full-page cover image
-
-# Page Background (Optional)
-# page-background: "assets/images/background.png"
-# page-background-opacity: 0.2
+titlepage: false
+# The cover is now handled manually by meta/cover.md
+titlepage-background: "https://raw.githubusercontent.com/WriteOps/.github/refs/heads/main/cover.png"
 
 # Headers & Footers
 header-left: "Book Title"
@@ -24,8 +21,9 @@ footer-left: "Author Name"
 # footer-right: "" # Defaults to page number if left commented out
 
 # Table of Contents
+# We set toc to false because we place it manually in meta/toc.md
+toc: false
 toc-own-page: true
-toc: true
 
 # Styling
 colorlinks: true
@@ -38,4 +36,6 @@ geometry:
 
 header-includes:
   - \usepackage{float}
+  - \usepackage{wrapfig}
   - \floatplacement{figure}{H}
+  - \renewcommand\maketitle{} # Suppress default Pandoc title page

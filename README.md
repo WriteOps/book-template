@@ -7,6 +7,8 @@
 </p>
 
 <p align="center">
+  <b><a href="https://github.com/WriteOps/book-template/raw/main/samples/my-awesome-book.pdf">View Sample PDF</a></b>
+  |
   <b><a href="https://github.com/WriteOps/book-template/wiki">Documentation</a></b>
   |
   <b><a href="https://github.com/WriteOps/book-template">GitHub</a></b>
@@ -32,7 +34,7 @@
     ```bash
     pnpm run build
     ```
-5.  Find your book at `output/book.pdf`.
+5.  Find your book in the `output/` directory (named after your title).
 
 ## 🛠️ Local Installation (Without Docker)
 
@@ -57,7 +59,7 @@ Required for rendering Mermaid diagrams.
 
 ## 📂 Project Structure
 
-Check out the [Getting Started Guide](./docs/1.getting-started.md) for a detailed breakdown.
+Check out the [Getting Started Guide](./__docs/1.getting-started.md) for a detailed breakdown.
 
 ## 📚 References & Resources
 

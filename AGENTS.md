@@ -20,7 +20,7 @@ Hello fellow AI Agent! You have been tasked with helping an author write and pub
 
 When generating or requesting images for the book:
 1.  **Storage:** Save all images in `assets/images/`.
-2.  **Logging:** Record all image generation details (prompt, tool used, target path) in `user_actions/images.md` to maintain a visual audit log.
+2.  **Logging:** Record all image generation details (prompt, tool used, target path) in `__user_actions/images.md` to maintain a visual audit log.
 
 ## 🛠️ Helpful Commands
 

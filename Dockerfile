@@ -7,7 +7,7 @@ RUN apk add --no-cache nodejs npm chromium curl ca-certificates
 # We might still need a few specific Eisvogel packages if they aren't in 'extra'
 RUN tlmgr update --self || true
 RUN tlmgr install footnotebackref pagecolor mdframed needspace ly1 zref \
-    sourcecodepro sourcesanspro titling || true
+    sourcecodepro sourcesanspro titling wrapfig capt-of || true
 RUN texhash
 
 # Set Puppeteer environment variables to use the installed Chromium
