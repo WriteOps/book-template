@@ -48,8 +48,27 @@ for url in $REMOTE_URLS; do
 done
 # --------------------------------------------
 
-# Initialize FILES variable with the custom cover, copyright, and TOC
-FILES="meta/cover.md meta/title-copyright.tex meta/toc.md meta/preface.md"
+# --- Meta Page Handler Function ---
+# Adds a meta page to FILES, prioritizing .tex over .md if both exist
+add_meta_page() {
+    local page=$1
+    if [ -f "meta/${page}.tex" ]; then
+        if [ -z "$FILES" ]; then FILES="meta/${page}.tex"; else FILES="$FILES meta/${page}.tex"; fi
+        echo -e "  📄 Adding ${page}.tex"
+    elif [ -f "meta/${page}.md" ]; then
+        if [ -z "$FILES" ]; then FILES="meta/${page}.md"; else FILES="$FILES meta/${page}.md"; fi
+        echo -e "  📄 Adding ${page}.md"
+    fi
+}
+
+# Initialize FILES variable conditionally based on existing meta pages
+FILES=""
+PREAMBLE_PAGES="cover title-copyright dedication toc preface introduction"
+
+echo -e "${YELLOW}📁 Processing Pre-amble...${NC}"
+for page in $PREAMBLE_PAGES; do
+    add_meta_page "$page"
+done
 
 # Dynamically find all chapters and their markdown files in order
 # ... (rest of the chapter discovery logic remains)
@@ -62,7 +81,11 @@ for chapter in $(ls -d chapters/chapter-* 2>/dev/null | sort -V); do
 done
 
 # Add closing pages
-FILES="$FILES meta/conclusion.md meta/about-author.md"
+echo -e "${YELLOW}📁 Processing Post-amble...${NC}"
+POSTAMBLE_PAGES="conclusion about-author"
+for page in $POSTAMBLE_PAGES; do
+    add_meta_page "$page"
+done
 
 echo -e "\n${BLUE}🔄 Merging files and fixing image paths...${NC}"
 

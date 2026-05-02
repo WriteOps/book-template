@@ -19,6 +19,7 @@
 ## ✨ Features
 
 - **Markdown Power:** Write your book in simple Markdown.
+- **Dynamic Metadata Pages:** Add optional dedications, introductions, and prefaces using `.md` or `.tex` files.
 - **Pro Layout:** Uses the [Eisvogel](https://github.com/Wandmalfarbe/pandoc-latex-template) LaTeX template for stunning "O'Reilly-style" PDFs.
 - **Automated Build:** One command to merge chapters, fix image paths, and compile the PDF.
 - **Diagrams & Math:** Native support for Mermaid diagrams and KaTeX math formulas.
