@@ -3,6 +3,12 @@
 # Exit on error
 set -e
 
+# Setup cleanup trap to ensure temporary files are removed on exit/failure
+cleanup() {
+    rm -f output/merged.md "$TEMP_METADATA" "$TEMP_METADATA.tmp"
+}
+trap cleanup EXIT
+
 # Colors for output
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -49,20 +55,20 @@ done
 # --------------------------------------------
 
 # --- Meta Page Handler Function ---
-# Adds a meta page to FILES, prioritizing .tex over .md if both exist
+# Adds a meta page to FILES array, prioritizing .tex over .md if both exist
 add_meta_page() {
     local page=$1
     if [ -f "meta/${page}.tex" ]; then
-        if [ -z "$FILES" ]; then FILES="meta/${page}.tex"; else FILES="$FILES meta/${page}.tex"; fi
+        FILES+=("meta/${page}.tex")
         echo -e "  📄 Adding ${page}.tex"
     elif [ -f "meta/${page}.md" ]; then
-        if [ -z "$FILES" ]; then FILES="meta/${page}.md"; else FILES="$FILES meta/${page}.md"; fi
+        FILES+=("meta/${page}.md")
         echo -e "  📄 Adding ${page}.md"
     fi
 }
 
-# Initialize FILES variable conditionally based on existing meta pages
-FILES=""
+# Initialize FILES array conditionally based on existing meta pages
+FILES=()
 PREAMBLE_PAGES="cover title-copyright dedication toc preface introduction"
 
 echo -e "${YELLOW}📁 Processing Pre-amble...${NC}"
@@ -73,10 +79,10 @@ done
 # Dynamically find all chapters and their markdown files in order
 # ... (rest of the chapter discovery logic remains)
 for chapter in $(ls -d chapters/chapter-* 2>/dev/null | sort -V); do
-  echo -e "${YELLOW}📁 Processing $(basename $chapter)...${NC}"
-  for file in $(ls $chapter/*.md 2>/dev/null | sort -V); do
-    FILES="$FILES $file"
-    echo -e "  📄 Adding $(basename $file)"
+  echo -e "${YELLOW}📁 Processing $(basename "$chapter")...${NC}"
+  for file in $(ls "$chapter"/*.md 2>/dev/null | sort -V); do
+    FILES+=("$file")
+    echo -e "  📄 Adding $(basename "$file")"
   done
 done
 
@@ -91,7 +97,7 @@ echo -e "\n${BLUE}🔄 Merging files and fixing image paths...${NC}"
 
 # Merge all files and fix relative assets paths (../../assets -> assets)
 # Remote chapter images are now handled by the Lua filter during Pandoc execution
-for f in $FILES; do
+for f in "${FILES[@]}"; do
   cat "$f"
   echo -e "\n"
 done | sed 's/\.\.\/\.\.\/assets/assets/g' > output/merged.md
@@ -114,7 +120,7 @@ pandoc output/merged.md \
   --filter ./node_modules/.bin/mermaid-filter \
   --lua-filter ./__scripts/download-images.lua \
   --template=templates/eisvogel.tex \
-  --highlight-style=breezedark \
+  --syntax-highlighting=breezedark \
   --top-level-division=chapter \
   --number-sections \
   -o "output/$BOOK_FILENAME"
@@ -122,9 +128,6 @@ pandoc output/merged.md \
 if [ $? -eq 0 ]; then
     echo -e "\n${GREEN}${BOLD}✨ Build complete!${NC}"
     echo -e "${GREEN}📖 The PDF has been created at: ${BOLD}output/$BOOK_FILENAME${NC}\n"
-    # Clean up temporary files
-    rm output/merged.md
-    rm "$TEMP_METADATA"
 else
     echo -e "\n${RED}${BOLD}❌ Build failed!${NC}"
     echo -e "${RED}Check the error messages above for details.${NC}\n"
