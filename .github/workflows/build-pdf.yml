@@ -1,12 +1,6 @@
 name: Build and Release PDF Book
 
-on:
-  push:
-    branches: [ "main" ]
-    tags:
-      - 'v*' # Trigger release when pushing tags like v1.0.0
-  pull_request:
-    branches: [ "main" ]
+on: workflow_dispatch
 
 jobs:
   build:
